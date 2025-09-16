@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<style type="text/css">
+div#videoPlayer_box{ width:1280px; margin:80px auto;}
+button#playpausebtn{
+	background:url(pause.png);
+    margin-top: 20px;
+	border:none;
+	width:54px;
+	height:54px;
+	cursor:pointer;
+	opacity:0.7;
+}
+button#playpausebtn:hover{ opacity:1;}
+body {
+	background: url('video_frame.jpg') no-repeat center center;
+	min-height: 100%;
+	background-color: #FFF;
+}
+}
+</style>
+<script>
+
+var vid, playbtn;
+
+function initializePlayer(){
+	//set object references
+	vid = document.getElementById("my_video");
+	playbtn = document.getElementById("playpausebtn");
+	// add event listeners
+	playbtn.addEventListener("click",playPause,false);
+}
+window.onload = initializePlayer;
+
+function playPause() {
+	if(vid.paused) {
+		vid.play();
+		playbtn.style.background = "url(pause.png)";
+	} else {
+	    vid.pause();
+		playbtn.style.background = "url(play.png)";
+	}
+}
+</script>
+<meta charset="utf-8">
+<style>
+div#load_screen{
+	background: #000;
+	opacity: .6;
+	position: fixed;
+	z-index:10;
+	top: 0px;
+	width: 100%;
+	height: 1600px;
+	}
+div#load_screen > div#loading{
+	color: #FFF;
+	width: 120px;
+	height: 24px;
+	margin: 300px auto;
+}	
+</style>
+<script>
+window.addEventListener("load", function(){
+	var load_screen = document.getElementById("load_screen");
+	document.body.removeChild(load_screen);
+});
+</script>
+</head>
+<body>
+<div id="load_screen"><div id="loading">
+  <div align="center">Loading E Card</div>
+</div></div>
+<div id="videoPlayer_box">
+<div align="center">
+  <video id="my_video" width="1280" height="720">
+    <source src="holiday_ecard.mp4#t=1.0">
+  </video>
+</div>
+<div id="video_controls_bar">
+	<div align="center">
+		  <button id="playpausebtn"></button>
+  </div>
+</div>
+</body>
+</html>
